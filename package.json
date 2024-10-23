@@ -2,20 +2,23 @@
   "name": "mpk-el-re",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "concurrently": "^9.0.1",
+    "electron": "^33.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
+    "wait-on": "^8.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "electron": "wait-on http://localhost:3000 && electron .",
+    "dev": "concurrently \"npm start\" \"npm run electron\""
   },
   "eslintConfig": {
     "extends": [
