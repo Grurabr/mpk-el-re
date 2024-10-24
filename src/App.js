@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './App copy.css'
 
 function App() {
   const [folderName, setFolderName] = useState('');
@@ -7,7 +8,7 @@ function App() {
 
   const handleSearch = async () => {
     if (!folderName) {
-      alert('Введите название папки!');
+      alert('Nimikenumero puuttuu!');
       return;
     }
 
@@ -21,7 +22,7 @@ function App() {
     try {
       await window.electronAPI.openFile(folderName, fileName);
     } catch (error) {
-      console.error('Ошибка при открытии файла:', error);
+      console.error('Virhe:', error);
     }
   };
 
@@ -36,13 +37,13 @@ function App() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Поиск Excel файлов</h1>
+      <h1>Mittäpöytäkirjän haku</h1>
 
       {/* Ввод для названия папки */}
       <div>
         <input
           type="text"
-          placeholder="Введите название папки"
+          placeholder="Nimikenumero"
           value={folderName}
           onChange={(e) => setFolderName(e.target.value)}
           style={{ marginRight: '10px' }}
@@ -53,24 +54,24 @@ function App() {
       <div style={{ marginTop: '10px' }}>
         <input
           type="text"
-          placeholder="Фильтр по имени файла (опционально)"
+          placeholder="Tilausnumero"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{ marginRight: '10px' }}
         />
-        <button onClick={handleSearch}>Искать</button>
+        <button onClick={handleSearch}>Etsiä</button>
       </div>
 
       {/* Таблица с результатами поиска */}
       <div style={{ marginTop: '20px' }}>
-        <h3>Результаты поиска:</h3>
+        <h3>Tulos:</h3>
         {searchResults.length > 0 ? (
           <table border="1" cellPadding="10" cellSpacing="0">
             <thead>
               <tr>
                 <th><strong>Nimikenumero</strong></th>
                 <th><strong>Tilausnumero</strong></th>
-                <th><strong>Дата</strong></th>
+                <th><strong>Aika</strong></th>
               </tr>
             </thead>
             <tbody>
@@ -104,7 +105,7 @@ function App() {
             </tbody>
           </table>
         ) : (
-          <p>Файлы не найдены.</p>
+          <p></p>
         )}
       </div>
     </div>
